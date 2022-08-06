@@ -1,8 +1,13 @@
+import os
 from dotenv import load_dotenv
 from ruuvitag_sensor.ruuvi import RuuviTagSensor
 from influxdb import InfluxDBClient
 
 load_dotenv()
+print(os.getenv('INFLUX_DB'))
+os.exit(0)
+
+
 client = InfluxDBClient(host=INFLUX_HOST, port=INFLUX_PORT, database=INFLUX_DB)
 
 def handle_data(received_data):
