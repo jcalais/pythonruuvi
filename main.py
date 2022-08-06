@@ -4,7 +4,7 @@ from ruuvitag_sensor.ruuvi import RuuviTagSensor
 from influxdb import InfluxDBClient
 
 load_dotenv()
-print(os.getenv('INFLUX_DB'))
+print(os.getenv('RUUVI_FIELDMAP'))
 client = InfluxDBClient(host=os.getenv('INFLUX_HOST'), port=os.getenv('INFLUX_PORT'), database=os.getenv('INFLUX_DB'))
 
 def handle_data(received_data):
