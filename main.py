@@ -5,10 +5,7 @@ from influxdb import InfluxDBClient
 
 load_dotenv()
 print(os.getenv('INFLUX_DB'))
-os.exit(0)
-
-
-client = InfluxDBClient(host=INFLUX_HOST, port=INFLUX_PORT, database=INFLUX_DB)
+client = InfluxDBClient(host=os.getenv('INFLUX_HOST'), port=os.getenv('INFLUX_PORT'), database=os.getenv('INFLUX_DB'))
 
 def handle_data(received_data):
     fields = {}
@@ -16,7 +13,7 @@ def handle_data(received_data):
     payload = received_data[1]
 
     dataFormat = payload['data_format'] if 'data_format' in payload else None
-    field_map = RUUVI_FIELDMAP
+    field_map = os.getenv('RUUVI_FIELDMAP')
     for field_label in field_map:
         fields[field_label] = payload[field_label] if field_label in payload else None
 
@@ -32,5 +29,5 @@ def handle_data(received_data):
     ]
     client.write_points(json_body)
 
-macs = APPROVED_MACS
+macs = os.getenv('APPROVED_MACS')
 RuuviTagSensor.get_datas(handle_data, macs)
