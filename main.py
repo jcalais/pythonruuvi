@@ -28,7 +28,10 @@ def handle_data(received_data):
             'fields': fields
         }
     ]
-    client.write_points(json_body)
+    try:
+        client.write_points(json_body)
+    except Exception as e:
+        print(e)
 
 macs = json.loads(os.getenv('APPROVED_MACS'))
 RuuviTagSensor.get_datas(handle_data, macs)
