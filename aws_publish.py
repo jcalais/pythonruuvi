@@ -9,7 +9,7 @@ from influxdb import InfluxDBClient
 load_dotenv()
 
 def main():
-    fivemins_datetime = datetime.datetime.now() - datetime.timedelta(minutes=5)
+    fivemins_datetime = datetime.now() - timedelta(minutes=5)
     fivemins = fivemins_datetime.strftime('%Y-%m-%d %H:%M:%S')
     print(fivemins)
     client = InfluxDBClient(host=os.getenv('INFLUX_HOST'), port=os.getenv('INFLUX_PORT'), database=os.getenv('INFLUX_DB'))
