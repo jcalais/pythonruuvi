@@ -39,7 +39,7 @@ def publish_metric(mac, obj):
             MetricData = [
                 {
                     'MetricName': f'temperature_{mac}',
-                    'Unit': 'celcius',
+                    'Unit': 'None',
                     'Value': obj['temperature']
                 },
             ],
