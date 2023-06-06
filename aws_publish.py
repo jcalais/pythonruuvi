@@ -16,7 +16,9 @@ def main():
     query = f"select temperature,mac from ruuvi_measurements where time > '{fivemins}' limit 20"
     params = {'host': 'server01'}
     result = client.query(query, bind_params=params)
-    print(result)
+    for row in result:
+        print(row)
+
 
 if __name__ == "__main__":
     main()
