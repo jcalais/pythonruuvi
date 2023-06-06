@@ -19,6 +19,7 @@ def main():
     metrics_data = {}
     result = client.query(query, bind_params=params)
     for row in result:
+        print(row)
         if row["mac"] not in metrics_data:
             metrics_data[row["mac"]] = {
                 "time": row["time"],
