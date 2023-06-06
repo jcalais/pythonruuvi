@@ -10,7 +10,7 @@ load_dotenv()
 TIME_ZONE = os.getenv('TIMEZONE', 0)
 
 def main():
-    fivemins_datetime = datetime.now() - timedelta(minutes=5, hours=TIME_ZONE)
+    fivemins_datetime = datetime.now() - timedelta(minutes=5, hours=int(TIME_ZONE))
     fivemins = fivemins_datetime.strftime('%Y-%m-%d %H:%M:%S')
     client = InfluxDBClient(host=os.getenv('INFLUX_HOST'), port=os.getenv('INFLUX_PORT'), database=os.getenv('INFLUX_DB'))
     query = f"select temperature,mac from ruuvi_measurements where time > '{fivemins}' order by time desc limit 20"
